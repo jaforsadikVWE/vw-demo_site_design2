@@ -1,0 +1,1478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="VisiWave - Your Vision, Our Wave of Solutions. Expert BPO, Software Development, Security, and Agri-Care since 2008.">
+    <title>VisiWave — Your Vision, Our Wave of Solutions</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy: #0A1929;
+            --deep-blue: #132F4C;
+            --electric: #00E5FF;
+            --cyan: #00B8D4;
+            --lime: #C6FF00;
+            --coral: #FF6B9D;
+            --white: #FFFFFF;
+            --off-white: #F0F4F8;
+            --gray: #B0BEC5;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--navy);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        ::selection {
+            background: var(--electric);
+            color: var(--navy);
+        }
+
+        /* Custom Cursor */
+        body {
+            cursor: none;
+        }
+
+        .cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--electric);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.2s ease, border-color 0.3s ease;
+            mix-blend-mode: difference;
+        }
+
+        .cursor-follower {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: var(--electric);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transition: transform 0.15s ease;
+        }
+
+        a:hover ~ .cursor,
+        button:hover ~ .cursor {
+            transform: scale(1.5);
+            border-color: var(--lime);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 2rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            mix-blend-mode: difference;
+        }
+
+        .logo {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 1.8rem;
+            color: var(--white);
+            letter-spacing: -0.03em;
+            text-transform: uppercase;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-menu a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--electric);
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-menu a:hover::before {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, var(--electric) 0%, transparent 70%);
+            opacity: 0.1;
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--lime) 0%, transparent 70%);
+            opacity: 0.08;
+            animation: pulse 10s ease-in-out infinite reverse;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1) translate(0, 0); opacity: 0.1; }
+            50% { transform: scale(1.2) translate(20px, -20px); opacity: 0.15; }
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            line-height: 1;
+            margin-bottom: 2rem;
+            letter-spacing: -0.03em;
+            text-transform: uppercase;
+        }
+
+        .hero-text h1 .highlight {
+            background: linear-gradient(135deg, var(--electric), var(--lime));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+        }
+
+        .hero-tagline {
+            font-size: 1.5rem;
+            color: var(--gray);
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .stat {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .stat:nth-child(1) { animation-delay: 0.2s; }
+        .stat:nth-child(2) { animation-delay: 0.4s; }
+        .stat:nth-child(3) { animation-delay: 0.6s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stat-number {
+            font-family: 'Space Mono', monospace;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--electric);
+            display: block;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-top: 0.5rem;
+        }
+
+        .hero-visual {
+            position: relative;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        #waveCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            filter: blur(1px);
+        }
+
+        .visual-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 2;
+        }
+
+        .visual-number {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 8rem;
+            line-height: 1;
+            background: linear-gradient(135deg, var(--electric), var(--lime));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            opacity: 0.9;
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+
+        .visual-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.2rem;
+            color: var(--electric);
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            margin-top: 1rem;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.9; filter: brightness(1); }
+            50% { opacity: 1; filter: brightness(1.3); }
+        }
+
+        .geometric-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .shape {
+            position: absolute;
+            border: 2px solid var(--electric);
+            opacity: 0.15;
+            animation: rotate-shape 20s linear infinite;
+        }
+
+        .shape:nth-child(1) {
+            width: 200px;
+            height: 200px;
+            top: 10%;
+            left: 20%;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            animation-duration: 15s;
+        }
+
+        .shape:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            bottom: 20%;
+            right: 15%;
+            border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%;
+            animation-duration: 20s;
+            animation-direction: reverse;
+        }
+
+        .shape:nth-child(3) {
+            width: 180px;
+            height: 180px;
+            top: 60%;
+            left: 10%;
+            border-radius: 50% 50% 30% 70% / 50% 50% 70% 30%;
+            border-color: var(--lime);
+            animation-duration: 18s;
+        }
+
+        @keyframes rotate-shape {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.1); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--electric), var(--cyan));
+            color: var(--navy);
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 30px rgba(0, 229, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 229, 255, 0.4);
+        }
+
+        .btn-secondary {
+            color: var(--white);
+            padding: 1.2rem 3rem;
+            border: 2px solid var(--electric);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn-secondary:hover {
+            background: var(--electric);
+            color: var(--navy);
+            transform: translateY(-3px);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 10rem 4rem;
+            position: relative;
+        }
+
+        .section-header {
+            max-width: 800px;
+            margin-bottom: 6rem;
+        }
+
+        .section-tag {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--electric);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, rgba(19, 47, 76, 0.6), rgba(10, 25, 41, 0.9));
+            border: 1px solid rgba(0, 229, 255, 0.1);
+            border-radius: 30px;
+            padding: 4rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .service-card.reveal {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--electric), var(--lime));
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .service-card:hover::before {
+            opacity: 0.05;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--electric);
+        }
+
+        .service-number {
+            font-family: 'Space Mono', monospace;
+            font-size: 1rem;
+            color: var(--electric);
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .service-icon {
+            width: 90px;
+            height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .service-icon svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .service-card:hover .service-icon svg {
+            transform: translateY(-5px) scale(1.05);
+        }
+
+        .service-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+            position: relative;
+        }
+
+        .service-description {
+            color: var(--gray);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        .service-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .service-features li {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            color: var(--gray);
+        }
+
+        .service-features li::before {
+            content: '→';
+            color: var(--electric);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        /* Story Section */
+        .story {
+            padding: 10rem 4rem;
+            background: var(--deep-blue);
+            position: relative;
+        }
+
+        .story-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .story-image {
+            position: relative;
+            height: 600px;
+            border-radius: 30px;
+            overflow: hidden;
+        }
+
+        .story-image::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: 20px;
+            bottom: 20px;
+            border: 3px solid var(--electric);
+            border-radius: 30px;
+            z-index: -1;
+        }
+
+        .story-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 30px;
+        }
+
+        .story-content h2 {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+        }
+
+        .story-content p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .story-highlight {
+            background: rgba(0, 229, 255, 0.1);
+            border-left: 4px solid var(--electric);
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 3rem 0;
+        }
+
+        .story-highlight p {
+            font-size: 1.1rem;
+            color: var(--white);
+            margin: 0;
+        }
+
+        .founder-signature {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .founder-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid var(--electric);
+        }
+
+        .founder-info h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .founder-info p {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin: 0;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 10rem 4rem;
+            background: var(--navy);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            margin-top: 4rem;
+        }
+
+        .testimonial-card {
+            background: linear-gradient(135deg, rgba(19, 47, 76, 0.5), rgba(10, 25, 41, 0.8));
+            border: 1px solid rgba(0, 229, 255, 0.1);
+            border-radius: 30px;
+            padding: 3rem;
+            position: relative;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--electric);
+        }
+
+        .quote-mark {
+            font-size: 4rem;
+            color: var(--electric);
+            opacity: 0.3;
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--gray);
+            margin-bottom: 2rem;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-top: 1px solid rgba(0, 229, 255, 0.1);
+            padding-top: 2rem;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--electric), var(--lime));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--navy);
+        }
+
+        .author-info h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .author-info p {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin: 0;
+        }
+
+        /* CTA Section */
+        .final-cta {
+            padding: 10rem 4rem;
+            background: linear-gradient(135deg, var(--deep-blue), var(--navy));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .final-cta::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 1000px;
+            height: 1000px;
+            background: radial-gradient(circle, rgba(0, 229, 255, 0.15) 0%, transparent 70%);
+        }
+
+        .cta-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-content h2 {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+        }
+
+        .cta-content p {
+            font-size: 1.3rem;
+            color: var(--gray);
+            margin-bottom: 3rem;
+            line-height: 1.7;
+        }
+
+        .cta-buttons-center {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--deep-blue);
+            padding: 6rem 4rem 3rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-brand h3 {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        .footer-section h4 {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: var(--electric);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section ul li a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--electric);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(0, 229, 255, 0.1);
+            text-align: center;
+            color: var(--gray);
+        }
+
+        /* Scroll Reveal Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            nav {
+                padding: 1.5rem 2rem;
+            }
+
+            .nav-menu {
+                gap: 1.5rem;
+            }
+
+            .hero {
+                padding: 0 2rem;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .hero-visual {
+                height: 400px;
+            }
+
+            .hero-text h1 {
+                font-size: clamp(2rem, 8vw, 4rem);
+            }
+
+            .services {
+                padding: 6rem 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .story {
+                padding: 6rem 2rem;
+            }
+
+            .story-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .testimonials {
+                padding: 6rem 2rem;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">VisiWave</div>
+        <ul class="nav-menu">
+            <li><a href="#services">Services</a></li>
+            <li><a href="#story">About</a></li>
+            <li><a href="#testimonials">Clients</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>
+                    Your Vision,<br>
+                    Our <span class="highlight">Wave</span><br>
+                    Of Solutions
+                </h1>
+                <p class="hero-tagline">Empowering businesses globally with innovation, expertise, and dedication since 2008.</p>
+                
+                <div class="cta-buttons">
+                    <a href="tel:+8801946082851" class="btn-primary">
+                        <span>Let's Talk</span>
+                        <span>→</span>
+                    </a>
+                    <a href="#services" class="btn-secondary">
+                        <span>Explore Services</span>
+                        <span>↓</span>
+                    </a>
+                </div>
+
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">15+</span>
+                        <span class="stat-label">Years Experience</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Projects Delivered</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">4</span>
+                        <span class="stat-label">Core Services</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <canvas id="waveCanvas"></canvas>
+                <div class="geometric-shapes">
+                    <div class="shape"></div>
+                    <div class="shape"></div>
+                    <div class="shape"></div>
+                </div>
+                <div class="visual-overlay">
+                    <div class="visual-number">2008</div>
+                    <div class="visual-label">Since</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="section-header">
+            <div class="section-tag">What We Do</div>
+            <h2 class="section-title">Four Pillars of Excellence</h2>
+            <p class="section-subtitle">Comprehensive solutions tailored to transform your business across multiple dimensions.</p>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card reveal">
+                <span class="service-number">01</span>
+                <div class="service-icon">
+                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Base -->
+                        <path d="M50 20 L80 35 L80 65 L50 80 L20 65 L20 35 Z" fill="url(#grad1)" />
+                        <!-- Top face -->
+                        <path d="M50 20 L80 35 L50 50 L20 35 Z" fill="url(#grad2)" />
+                        <!-- Front layers -->
+                        <path d="M35 42 L45 48 L45 58 L35 52 Z" fill="#00E5FF" opacity="0.8"/>
+                        <path d="M50 50 L60 56 L60 66 L50 60 Z" fill="#00B8D4" opacity="0.9"/>
+                        <path d="M55 47 L65 53 L65 63 L55 57 Z" fill="#C6FF00" opacity="0.7"/>
+                        <defs>
+                            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#132F4C;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#0A1929;stop-opacity:1" />
+                            </linearGradient>
+                            <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#00E5FF;stop-opacity:0.9" />
+                                <stop offset="100%" style="stop-color:#00B8D4;stop-opacity:0.8" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <h3 class="service-title">BPO Solutions</h3>
+                <p class="service-description">
+                    Transforming operations and empowering growth with premier business process outsourcing that drives efficiency and scales with your ambitions.
+                </p>
+                <ul class="service-features">
+                    <li>Customer Support Excellence</li>
+                    <li>Data Management & Analytics</li>
+                    <li>Back Office Operations</li>
+                    <li>Quality Assurance</li>
+                </ul>
+            </div>
+
+            <div class="service-card reveal">
+                <span class="service-number">02</span>
+                <div class="service-icon">
+                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Laptop base -->
+                        <path d="M25 45 L75 45 L75 70 L25 70 Z" fill="url(#gradLaptop)" />
+                        <!-- Screen -->
+                        <path d="M30 35 L70 35 L70 65 L30 65 Z" fill="#0A1929" stroke="#00E5FF" stroke-width="1"/>
+                        <!-- Code lines -->
+                        <line x1="35" y1="42" x2="50" y2="42" stroke="#00E5FF" stroke-width="2" opacity="0.8"/>
+                        <line x1="38" y1="48" x2="55" y2="48" stroke="#C6FF00" stroke-width="2" opacity="0.7"/>
+                        <line x1="35" y1="54" x2="48" y2="54" stroke="#00B8D4" stroke-width="2" opacity="0.8"/>
+                        <line x1="38" y1="60" x2="52" y2="60" stroke="#00E5FF" stroke-width="2" opacity="0.6"/>
+                        <!-- Side depth -->
+                        <path d="M70 35 L75 32 L75 67 L70 70 Z" fill="#132F4C" opacity="0.6"/>
+                        <path d="M30 70 L75 70 L75 75 L25 75 Z" fill="#00E5FF" opacity="0.3"/>
+                        <defs>
+                            <linearGradient id="gradLaptop" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#00B8D4;stop-opacity:0.6" />
+                                <stop offset="100%" style="stop-color:#132F4C;stop-opacity:0.9" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <h3 class="service-title">Software Development</h3>
+                <p class="service-description">
+                    Crafting code and building dreams. We revolutionize software development with cutting-edge solutions that transform ideas into digital realities.
+                </p>
+                <ul class="service-features">
+                    <li>Custom Application Development</li>
+                    <li>Web & Mobile Solutions</li>
+                    <li>Cloud Integration</li>
+                    <li>API Development</li>
+                </ul>
+            </div>
+
+            <div class="service-card reveal">
+                <span class="service-number">03</span>
+                <div class="service-icon">
+                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Shield base -->
+                        <path d="M50 20 L70 30 L70 55 Q70 70 50 80 Q30 70 30 55 L30 30 Z" fill="url(#gradShield)"/>
+                        <!-- Shield highlight -->
+                        <path d="M50 20 L70 30 L70 55 Q70 65 60 72" fill="none" stroke="#00E5FF" stroke-width="2" opacity="0.4"/>
+                        <!-- Shield left face -->
+                        <path d="M50 20 L30 30 L30 55 Q30 65 40 72" fill="#0A1929" opacity="0.6"/>
+                        <!-- Center emblem -->
+                        <circle cx="50" cy="50" r="12" fill="#00E5FF" opacity="0.8"/>
+                        <path d="M50 42 L45 50 L48 50 L48 58 L52 58 L52 50 L55 50 Z" fill="#0A1929"/>
+                        <!-- Lock keyhole -->
+                        <circle cx="50" cy="48" r="3" fill="#0A1929"/>
+                        <rect x="48.5" y="48" width="3" height="6" fill="#0A1929"/>
+                        <defs>
+                            <linearGradient id="gradShield" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#00E5FF;stop-opacity:0.7" />
+                                <stop offset="50%" style="stop-color:#00B8D4;stop-opacity:0.8" />
+                                <stop offset="100%" style="stop-color:#132F4C;stop-opacity:0.9" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <h3 class="service-title">Security Services</h3>
+                <p class="service-description">
+                    Securing your world, one watchful eye at a time. Professional security guard services that safeguard your assets with unwavering dedication.
+                </p>
+                <ul class="service-features">
+                    <li>On-Site Security Personnel</li>
+                    <li>Access Control Management</li>
+                    <li>Risk Assessment</li>
+                    <li>Emergency Response</li>
+                </ul>
+            </div>
+
+            <div class="service-card reveal">
+                <span class="service-number">04</span>
+                <div class="service-icon">
+                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Pot base (isometric) -->
+                        <path d="M35 65 L40 75 L60 75 L65 65 Z" fill="url(#gradPot)"/>
+                        <!-- Pot top -->
+                        <ellipse cx="50" cy="65" rx="15" ry="5" fill="#00B8D4" opacity="0.7"/>
+                        <!-- Soil -->
+                        <ellipse cx="50" cy="65" rx="12" ry="4" fill="#132F4C"/>
+                        <!-- Plant stem -->
+                        <path d="M50 65 Q48 55 50 45" stroke="#C6FF00" stroke-width="3" fill="none" stroke-linecap="round"/>
+                        <!-- Left leaves -->
+                        <path d="M50 55 Q40 52 38 48 Q40 50 50 53" fill="#C6FF00" opacity="0.8"/>
+                        <path d="M50 48 Q42 46 40 42 Q42 44 50 46" fill="#C6FF00" opacity="0.7"/>
+                        <!-- Right leaves -->
+                        <path d="M50 55 Q60 52 62 48 Q60 50 50 53" fill="#00E5FF" opacity="0.8"/>
+                        <path d="M50 48 Q58 46 60 42 Q58 44 50 46" fill="#00E5FF" opacity="0.7"/>
+                        <!-- Top leaves -->
+                        <ellipse cx="50" cy="42" rx="8" ry="5" fill="#C6FF00" opacity="0.9"/>
+                        <ellipse cx="50" cy="40" rx="6" ry="4" fill="#00E5FF" opacity="0.8"/>
+                        <!-- Growth sparkles -->
+                        <circle cx="42" cy="45" r="1.5" fill="#00E5FF" opacity="0.9"/>
+                        <circle cx="58" cy="43" r="1.5" fill="#C6FF00" opacity="0.9"/>
+                        <circle cx="50" cy="38" r="2" fill="#00E5FF" opacity="0.8"/>
+                        <defs>
+                            <linearGradient id="gradPot" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#00E5FF;stop-opacity:0.5" />
+                                <stop offset="100%" style="stop-color:#132F4C;stop-opacity:0.8" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <h3 class="service-title">Agri-Care Solutions</h3>
+                <p class="service-description">
+                    Harvesting innovation, cultivating prosperity. Cutting-edge agri-business solutions transforming agriculture into a thriving, sustainable industry.
+                </p>
+                <ul class="service-features">
+                    <li>Smart Farming Technology</li>
+                    <li>Supply Chain Optimization</li>
+                    <li>Agricultural Consulting</li>
+                    <li>Sustainable Practices</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="story" id="story">
+        <div class="story-container">
+            <div class="story-image">
+                <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=800&fit=crop" alt="VisiWave Office">
+            </div>
+            <div class="story-content">
+                <div class="section-tag">Our Journey</div>
+                <h2>From One Room to Global Excellence</h2>
+                <p>
+                    Born in 2008 in a single apartment, VisiWave has evolved into a global leader empowering businesses with innovation and excellence. What started as a vision has become a wave of transformation.
+                </p>
+                <p>
+                    At VisiWave, we're more than a business – we're a dynamic force driving innovation and empowerment. With a global reach, we offer a spectrum of services spanning BPO solutions, cutting-edge software development, and innovative agri-business solutions.
+                </p>
+                <div class="story-highlight">
+                    <p>
+                        "Our mission? To unlock your company's full potential. With integrated services tailored to your unique needs, we're here to elevate your business to new heights."
+                    </p>
+                </div>
+                <div class="founder-signature">
+                    <div class="founder-avatar">SS</div>
+                    <div class="founder-info">
+                        <h4>SM Shamim</h4>
+                        <p>Founder & CEO</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="testimonials">
+        <div class="section-header">
+            <div class="section-tag">Client Success</div>
+            <h2 class="section-title">Real Stories, Genuine Satisfaction</h2>
+            <p class="section-subtitle">Hear from the businesses we've helped transform through our comprehensive solutions.</p>
+        </div>
+
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="quote-mark">"</div>
+                <p class="testimonial-text">
+                    VisiWave has been a tremendous asset to our operations. Their solutions are exceptional. We've witnessed remarkable transformation in our efficiency and customer satisfaction.
+                </p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">DV</div>
+                    <div class="author-info">
+                        <h4>Daria Vashchenko</h4>
+                        <p>Project Accountant<br>Mazenga Building Group</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="quote-mark">"</div>
+                <p class="testimonial-text">
+                    VisiWave's service has been a breath of fresh air. Their commitment to excellence and attention to detail is truly remarkable. VisiWave is our trusted partner for success.
+                </p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">RL</div>
+                    <div class="author-info">
+                        <h4>Ryan Li</h4>
+                        <p>Associate<br>Minto Group</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="quote-mark">"</div>
+                <p class="testimonial-text">
+                    Impressive security service! VisiWave's team provided top-notch protection. Professional, vigilant, and proactive. Highly recommended for any organization.
+                </p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">NG</div>
+                    <div class="author-info">
+                        <h4>Nick Gioseffi</h4>
+                        <p>Site Superintendent<br>Toddglen</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta" id="contact">
+        <div class="cta-content">
+            <h2>Ready to Transform Your Business?</h2>
+            <p>
+                Let's discuss how VisiWave's comprehensive solutions can help you achieve your goals with confidence and peace of mind.
+            </p>
+            <div class="cta-buttons-center">
+                <a href="tel:+8801946082851" class="btn-primary">
+                    <span>Call +880 194 608 2851</span>
+                    <span>📞</span>
+                </a>
+                <a href="mailto:Office@visiwave.xyz" class="btn-secondary">
+                    <span>Email Us</span>
+                    <span>✉️</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>VisiWave</h3>
+                <p>Your vision, our wave of solutions. Empowering businesses globally with innovation, expertise, and dedication since 2008.</p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#">BPO Solutions</a></li>
+                    <li><a href="#">Software Development</a></li>
+                    <li><a href="#">Security Services</a></li>
+                    <li><a href="#">Agri-Care Solutions</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Our Team</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Blog & News</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="tel:+8801946082851">+880 194 608 2851</a></li>
+                    <li><a href="mailto:Office@visiwave.xyz">Office@visiwave.xyz</a></li>
+                    <li><a>Orchid Palace, 3rd Floor<br>Bogura, Bangladesh</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 VisiWave. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Wave Canvas Animation
+        const canvas = document.getElementById('waveCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        function resizeCanvas() {
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        class Wave {
+            constructor(amplitude, frequency, speed, color, opacity) {
+                this.amplitude = amplitude;
+                this.frequency = frequency;
+                this.speed = speed;
+                this.color = color;
+                this.opacity = opacity;
+                this.offset = 0;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.strokeStyle = this.color;
+                ctx.lineWidth = 3;
+                ctx.globalAlpha = this.opacity;
+
+                for (let x = 0; x < canvas.width; x++) {
+                    const y = canvas.height / 2 + 
+                              Math.sin((x * this.frequency + this.offset) * Math.PI / 180) * this.amplitude;
+                    
+                    if (x === 0) {
+                        ctx.moveTo(x, y);
+                    } else {
+                        ctx.lineTo(x, y);
+                    }
+                }
+                
+                ctx.stroke();
+                this.offset += this.speed;
+            }
+        }
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 3 + 1;
+                this.speedX = (Math.random() - 0.5) * 0.5;
+                this.speedY = (Math.random() - 0.5) * 0.5;
+                this.opacity = Math.random() * 0.5 + 0.2;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x < 0 || this.x > canvas.width || 
+                    this.y < 0 || this.y > canvas.height) {
+                    this.reset();
+                }
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(0, 229, 255, ${this.opacity})`;
+                ctx.fill();
+            }
+        }
+
+        const waves = [
+            new Wave(40, 0.015, 1, '#00E5FF', 0.3),
+            new Wave(60, 0.02, 0.7, '#00B8D4', 0.2),
+            new Wave(35, 0.025, 1.2, '#C6FF00', 0.15),
+        ];
+
+        const particles = [];
+        for (let i = 0; i < 50; i++) {
+            particles.push(new Particle());
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            waves.forEach(wave => wave.draw());
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        // Custom Cursor
+        const cursor = document.querySelector('.cursor');
+        const follower = document.querySelector('.cursor-follower');
+        
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+        let followerX = 0, followerY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function animateCursor() {
+            cursorX += (mouseX - cursorX) * 0.2;
+            cursorY += (mouseY - cursorY) * 0.2;
+            
+            followerX += (mouseX - followerX) * 0.1;
+            followerY += (mouseY - followerY) * 0.1;
+
+            cursor.style.left = cursorX + 'px';
+            cursor.style.top = cursorY + 'px';
+            
+            follower.style.left = followerX + 'px';
+            follower.style.top = followerY + 'px';
+
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll reveal animations
+        const revealElements = document.querySelectorAll('.reveal, .service-card');
+        
+        const revealOnScroll = () => {
+            revealElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('active');
+                    element.classList.add('reveal');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll();
+
+        // Animated counter for stats
+        const animateCounter = (element, target) => {
+            let current = 0;
+            const increment = target / 50;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target + '+';
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current) + '+';
+                }
+            }, 30);
+        };
+
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumber = entry.target.querySelector('.stat-number');
+                    const target = parseInt(statNumber.textContent);
+                    animateCounter(statNumber, target);
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        });
+
+        document.querySelectorAll('.stat').forEach(stat => {
+            statsObserver.observe(stat);
+        });
+    </script>
+</body>
+</html>
