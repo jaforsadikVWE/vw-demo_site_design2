@@ -15,7 +15,7 @@
   --dark3: #1E1E1E;
   --border: rgba(255,255,255,0.07);
   --text: #FFFFFF;
-  --muted: #888888;
+  --muted: #A0A0A0;
   --light-muted: #AAAAAA;
   --font-display: 'Plus Jakarta Sans', sans-serif;
   --font-body: 'Plus Jakarta Sans', sans-serif;
@@ -1021,8 +1021,8 @@ footer {
           No templates. No WordPress. Pure Next.js custom code — built fast, optimized for search, and designed to grow your business.
         </p>
         <div class="hero-actions fade-up delay-3">
-          <button class="btn-primary" onclick="showPage('contact')">Start Your Project →</button>
-          <button class="btn-ghost" onclick="showPage('services')">View Services</button>
+          <a href="javascript:void(0)" class="btn-primary" onclick="showPage('contact')">Start Your Project →</a>
+          <a href="javascript:void(0)" class="btn-ghost" onclick="showPage('services')">View Services</a>
         </div>
         <div class="hero-stats fade-up delay-4">
           <!-- The Tech Flex -->
@@ -1085,15 +1085,6 @@ footer {
   <!-- MARQUEE -->
   <div class="marquee-section">
     <div class="marquee-track">
-      <div class="marquee-item"><span class="dot"></span>Next.js</div>
-      <div class="marquee-item"><span class="dot"></span>Custom Code</div>
-      <div class="marquee-item"><span class="dot"></span>SEO Ready</div>
-      <div class="marquee-item"><span class="dot"></span>Mobile First</div>
-      <div class="marquee-item"><span class="dot"></span>Fast Delivery</div>
-      <div class="marquee-item"><span class="dot"></span>No Templates</div>
-      <div class="marquee-item"><span class="dot"></span>No WordPress</div>
-      <div class="marquee-item"><span class="dot"></span>Bangladesh</div>
-      <!-- duplicate for infinite -->
       <div class="marquee-item"><span class="dot"></span>Next.js</div>
       <div class="marquee-item"><span class="dot"></span>Custom Code</div>
       <div class="marquee-item"><span class="dot"></span>SEO Ready</div>
@@ -1178,33 +1169,33 @@ footer {
     <div class="why-grid">
       <div class="why-item">
         <div class="num">01</div>
-        <h4>No WordPress. No Templates.</h4>
-        <p>Every site is hand-coded in Next.js from scratch. You get a unique, fast, and fully custom website — not a recycled theme.</p>
+        <h4>No WordPress, Ever.</h4>
+        <p>Hand-coded Next.js builds—zero themes. Faster, safer, and built to scale.</p>
       </div>
       <div class="why-item">
         <div class="num">02</div>
-        <h4>SEO Built In, Not Bolted On</h4>
-        <p>Next.js server-side rendering means search engines love your site by default. No plugins, no extra fees.</p>
+        <h4>SEO Built In.</h4>
+        <p>Server-rendered pages and clean semantics so Google loves you by default.</p>
       </div>
       <div class="why-item">
         <div class="num">03</div>
-        <h4>Startup Price, Agency Quality</h4>
-        <p>Professional web development from 5,999 BDT. One-time payment. No monthly fees, no hidden costs.</p>
+        <h4>Agency Quality, Startup Price.</h4>
+        <p>5,999 BDT for custom code—no subscriptions, no hidden upsells.</p>
       </div>
       <div class="why-item">
         <div class="num">04</div>
-        <h4>Fast Delivery</h4>
-        <p>Your 4-page website delivered in 7–10 working days. We work fast without cutting corners on quality.</p>
+        <h4>Launch in 7–10 Days.</h4>
+        <p>A complete, tested 4-page site live in under two weeks.</p>
       </div>
       <div class="why-item">
         <div class="num">05</div>
-        <h4>Mobile-First Always</h4>
-        <p>Every site is designed and coded for mobile first. Pixel-perfect across all screen sizes.</p>
+        <h4>Mobile-First Always.</h4>
+        <p>Designed on a 390px grid so every screen looks intentional.</p>
       </div>
       <div class="why-item">
         <div class="num">06</div>
-        <h4>15+ Years Experience</h4>
-        <p>VisiWave has been empowering businesses since 2008. We know what works for the Bangladesh market.</p>
+        <h4>Built in Bangladesh, Since 2008.</h4>
+        <p>15+ years shipping for local brands—we know the market and the tech.</p>
       </div>
     </div>
   </section>
@@ -1656,6 +1647,24 @@ document.querySelectorAll('a[tabindex="0"]').forEach(link => {
     }
   });
 });
+
+// Close menu when clicking anywhere outside the nav menu/toggle
+document.addEventListener('click', function(event) {
+  const menu = document.getElementById('navMenu');
+  const toggleBtn = document.querySelector('.mobile-toggle');
+  
+  if (menu.classList.contains('menu-open') &&
+      !menu.contains(event.target) &&
+      !toggleBtn.contains(event.target)) {
+    menu.classList.remove('menu-open');
+  }
+});
+
+// Duplicate marquee items in JS for clean HTML
+const track = document.querySelector('.marquee-track');
+if (track) {
+  track.innerHTML += track.innerHTML;
+}
 </script>
 </body>
 </html>
