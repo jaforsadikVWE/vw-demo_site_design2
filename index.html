@@ -746,6 +746,30 @@ footer {
 .why-item h4 { font-size:18px; font-weight:700; margin-bottom:10px; }
 .why-item p { font-size:14px; color:var(--muted); font-weight:300; line-height:1.7; }
 
+/* ── CTA BANNER ── */
+.cta-section { max-width: none; padding: 80px 60px; }
+.cta-inner {
+  max-width: 1200px; margin: 0 auto; background: var(--orange);
+  border-radius: 16px; padding: 64px;
+  display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap;
+}
+.cta-label {
+  font-size: 13px; font-weight: 600; letter-spacing: 2px;
+  text-transform: uppercase; color: rgba(255,255,255,.7); margin-bottom: 12px;
+}
+.cta-inner h2 {
+  font-size: clamp(28px, 4vw, 44px); font-weight: 800; letter-spacing: -1px; line-height: 1.1; color: #fff;
+}
+.cta-inner p {
+  color: rgba(255,255,255,.75); font-size: 16px; margin-top: 12px; font-weight: 300;
+}
+.cta-button {
+  background: #fff; color: var(--orange); border: none; padding: 18px 36px; border-radius: 6px;
+  font-family: var(--font-display); font-size: 16px; font-weight: 700; cursor: pointer;
+  white-space: nowrap; transition: transform .15s;
+}
+.cta-button:hover { transform: translateY(-2px); }
+
 /* ── ACCESSIBILITY & FOCUS STATES ── */
 :focus { outline: none; }
 :focus-visible {
@@ -809,10 +833,17 @@ footer {
   /* Your existing mobile layout fixes */
   .hero-inner { grid-template-columns: 1fr; }
   .hero-visual { display: none; }
+  .hero { padding: 120px 24px 60px; }
+  .hero-stats { gap: 24px; flex-wrap: wrap; }
   section, section.full { padding: 80px 24px; }
   .services-grid, .pricing-grid, .about-grid, .contact-grid, .why-grid, .form-row { grid-template-columns: 1fr; }
   .footer-inner { grid-template-columns: 1fr; gap: 40px; }
   .team-grid, .process-steps { grid-template-columns: repeat(2, 1fr); gap: 20px;}
+
+  /* CTA Mobile Adjustments */
+  .cta-section { padding: 60px 24px; }
+  .cta-inner { padding: 36px 24px; flex-direction: column; align-items: flex-start; gap: 24px; }
+  .cta-button { width: 100%; text-align: center; }
 }
 </style>
 </head>
@@ -1011,16 +1042,14 @@ footer {
   </section>
 
   <!-- CTA BANNER -->
-  <section style="max-width:none;padding:80px 60px;">
-    <div style="max-width:1200px;margin:0 auto;background:var(--orange);border-radius:16px;padding:64px;display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap;">
+  <section class="cta-section">
+    <div class="cta-inner">
       <div>
-        <div style="font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:12px;">Limited Slots Available</div>
-        <h2 style="font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:-1px;line-height:1.1;color:#fff;">
-          A professional website<br>for only 5,999 BDT.
-        </h2>
-        <p style="color:rgba(255,255,255,.75);font-size:16px;margin-top:12px;font-weight:300;">4-page custom Next.js site. SEO ready. One-time payment.</p>
+        <div class="cta-label">Limited Slots Available</div>
+        <h2>A professional website<br>for only 5,999 BDT.</h2>
+        <p>4-page custom Next.js site. SEO ready. One-time payment.</p>
       </div>
-      <button onclick="showPage('contact')" style="background:#fff;color:var(--orange);border:none;padding:18px 36px;border-radius:6px;font-family:var(--font-display);font-size:16px;font-weight:700;cursor:pointer;white-space:nowrap;transition:transform .15s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
+      <button onclick="showPage('contact')" class="cta-button">
         Get Your Site Now →
       </button>
     </div>
