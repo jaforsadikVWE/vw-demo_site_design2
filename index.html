@@ -749,6 +749,25 @@ footer {
 .why-item h4 { font-size:18px; font-weight:700; margin-bottom:10px; }
 .why-item p { font-size:14px; color:var(--muted); font-weight:300; line-height:1.7; }
 
+/* Micro-interactions for desktop hover */
+.why-item .num {
+  transition: opacity .3s ease, transform .3s ease, color .3s ease;
+  display:inline-block;
+}
+.why-item:hover {
+  background: var(--dark2);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  position: relative;
+  border-radius: 4px;
+}
+.why-item:hover .num {
+  opacity: 0.8;
+  transform: translateX(8px);
+  color: var(--orange);
+}
+
 /* ── CTA BANNER ── */
 .cta-section { max-width: none; padding: 80px 60px; }
 .cta-inner {
